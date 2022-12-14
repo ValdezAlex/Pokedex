@@ -9,6 +9,8 @@ import { Pokemon } from "../types/types";
 import LoadingScreen from "../components/LoadingScreen";
 import { wairFor } from "../utils/utils";
 
+import Musica from "../assets/cancion.mp3";
+
 const Pokemons = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [query, setQuery] = useState("");
@@ -36,6 +38,10 @@ const Pokemons = () => {
 
     return (
     <>
+        <audio autoPlay loop>
+          <source src={Musica}/>
+
+        </audio>
         <Header query={query} setQuery={setQuery}/>
             <main>
                 <nav className={styles.nav}>
