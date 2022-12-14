@@ -6,18 +6,28 @@ import Header from "../components/Header";
 import { fetchPokemons } from "../api/fetchPokemons";
 import styles from "./pokemons.module.css";
 import { Pokemon } from "../types/types";
+import LoadingScreen from "../components/LoadingScreen";
+import { wairFor } from "../utils/utils";
 
 const Pokemons = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [query, setQuery] = useState("");
     const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
     useEffect(() => {
         const fetchAllPokemons = async () => {
+            setIsLoading(true);
+            await wairFor(1000);
             const allPokemons = await fetchPokemons();
             setPokemons(allPokemons);
+            setIsLoading(false);
         };
         fetchAllPokemons();
     }, []);
+
+    if (isLoading || !pokemons) {
+        return <LoadingScreen />;       
+    }
 
 
     return (

@@ -10,3 +10,6 @@ export function formatPokemonName(name: string): string {
     } else return name;
   }
   
+  export function wairFor(time: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
